@@ -1,0 +1,21 @@
+# Jekyll build output
+_site/
+.jekyll-cache/
+.jekyll-metadata
+.sass-cache/
+
+# Bundler
+vendor/
+.bundle/
+
+# Environment & secrets
+.env
+.env.*
+*.env
+!.env.example
+
+# macOS
+.DS_Store
+
+# Node (if ever added)
+node_modules/

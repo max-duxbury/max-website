@@ -1,0 +1,8 @@
+<footer>
+  <ul class="footer-links">
+    {% if site.author.email %}<li><a href="mailto:{{ site.author.email }}">[ EMAIL ]</a></li>{% endif %}
+    {% if site.author.github %}<li><a href="https://github.com/{{ site.author.github }}" target="_blank" rel="noopener">[ GITHUB ]</a></li>{% endif %}
+    {% if site.author.linkedin %}<li><a href="https://linkedin.com/in/{{ site.author.linkedin }}" target="_blank" rel="noopener">[ LINKEDIN ]</a></li>{% endif %}
+  </ul>
+  <span>&copy; {{ 'now' | date: "%Y" }} {{ site.author.name }}</span>
+</footer>

@@ -1,0 +1,32 @@
+education:
+  - institution: Loughborough University
+    degree: BSc Mathematics
+    years: 2024 –2027
+    notes: Expected First Class Honours
+
+experience:
+  - title: Job Title
+    company: Company Name
+    dates: Jan 2024 – Present
+    bullets:
+      - Did something impactful
+      - Built something interesting
+
+  - title: Internship
+    company: Another Company
+    dates: Jun 2023 – Sep 2023
+    bullets:
+      - Worked on something
+
+skills:
+  - category: Languages
+    items: [C++, Python, Java, Haskell]
+  - category: Tools
+    items: [MATLAB, Git, Jekyll]
+
+# Optional sections — delete if unused
+# publications:
+#   - title: Paper Title
+#     venue: Conference / Journal
+#     year: 2024
+#     url: https://...

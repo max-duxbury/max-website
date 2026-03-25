@@ -1,0 +1,47 @@
+title: Max Duxbury
+description: Personal website — blog, projects, and CV
+url: "https://maxduxbury.com"  # e.g. https://maxduxbury.com
+baseurl: ""
+
+author:
+  name: Max Duxbury
+  email: "max.duxbury@outlook.com"       # e.g. max@example.com
+  github: "max-duxbury"      # e.g. maxduxbury
+  #linkedin: ""    # e.g. maxduxbury
+  #twitter: ""     # e.g. maxduxbury
+
+# Plugins
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-sitemap
+
+# Collections
+collections:
+  projects:
+    output: true
+    permalink: /projects/:name/
+
+# Default front matter
+defaults:
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: post
+  - scope:
+      path: ""
+      type: projects
+    values:
+      layout: project
+
+# Blog
+permalink: /blog/:year/:month/:day/:title/
+
+# Exclude from build
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  - CLAUDE.md
+  - vendor/
