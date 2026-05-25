@@ -97,6 +97,9 @@ nav {
 .nav-links li { margin: 0; }
 
 .nav-links a {
+  font-family: "JetBrains Mono", "Fira Mono", ui-monospace, monospace;
+  font-size: 0.8rem;
+  letter-spacing: 0.02em;
   text-decoration: none;
   opacity: 0.4;
   transition: opacity 0.15s;
@@ -251,20 +254,25 @@ footer {
 }
 
 .footer-links a {
+  font-family: "JetBrains Mono", "Fira Mono", ui-monospace, monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.02em;
   text-decoration: none;
   color: var(--muted);
+}
+
+.view-all {
+  font-family: "JetBrains Mono", "Fira Mono", ui-monospace, monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.02em;
+  color: var(--muted);
+  text-decoration: none;
 }
 
 .footer-links a:hover { opacity: 0.6; }
 
 /* ─── Utilities ─────────────────────────────────────────── */
 .muted { color: var(--muted); }
-
-.view-all {
-  font-size: 0.8rem;
-  color: var(--muted);
-  text-decoration: none;
-}
 
 .view-all:hover { opacity: 0.6; }
 

@@ -2,32 +2,27 @@ education:
   - institution: Loughborough University
     degree: BSc Mathematics
     years: 2024 – 2027
-    notes: Expected First Class Honours
+    notes: "Predicted: First"
 
   - institution: Loretto School
-    years: 2011 - 2024
-    notes: Duncan McLean Maths Award - Top in my year for Mathematics A-Level
+    degree: GCSEs / A-Levels
+    years: 2011 – 2024
+    notes: Duncan McLean Maths Award (top in year, A-Level Mathematics)
 
 experience:
   - title: Equity Analyst
     company: Loughborough Student Managed Fund (LSMF)
     dates: Oct 2025 – Present
     bullets:
-      - Conducted fundamental equity research on Industrial companies, analysing financial statements, fillings, macroeconomic factors, and catalysts.
+      - Conducted fundamental equity research on industrial companies, analysing financial statements, filings, macroeconomic factors, and catalysts.
       - Collaborated with fellow analysts to prepare in-depth stock pitches and reports for presentation to fund leadership.
-      - Monitored portfolio holdings of more than £350, 000 AUM and created reports using fundamental metrics to create benchmark performance.
-
-#  - title: Internship
-#    company: Another Company
-#    dates: Jun 2023 – Sep 2023
-#    bullets:
-#      - Worked on something
+      - Monitored portfolio holdings of more than £350,000 AUM and produced benchmark performance reports using fundamental metrics.
 
 skills:
-  - category: Languages
-    items: [C/C++, Python, Java, Haskell, Rust]
-  - category: Tools
-    items: [MATLAB, Git]
+  - category: Proficient
+    items: [Python, C]
+  - category: Familiar
+    items: [C++, Java, Haskell, Rust, MATLAB, Git]
 
 # Optional sections — delete if unused
 # publications:

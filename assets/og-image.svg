@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#fbf1c7"/>
+  <text x="80" y="320"
+        font-family="ui-monospace, 'JetBrains Mono', monospace"
+        font-size="96" font-weight="700" fill="#3c3836">Max Duxbury</text>
+  <text x="80" y="400"
+        font-family="ui-monospace, 'JetBrains Mono', monospace"
+        font-size="36" font-weight="400" fill="#7c6f64">[ maths · ML · systems ]</text>
+  <text x="80" y="560"
+        font-family="ui-monospace, 'JetBrains Mono', monospace"
+        font-size="28" font-weight="400" fill="#7c6f64">maxduxbury.com</text>
+</svg>

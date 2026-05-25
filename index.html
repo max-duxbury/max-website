@@ -3,12 +3,13 @@ layout: default
 ---
 <section>
   <h1>Hi, I'm Max.</h1>
-  <p>Currently a Mathematics student at Loughborough University, building low-level systems and writing about it here.</p>
+  <p>Mathematics undergraduate at Loughborough University, exploring ML, distributed systems, stochastics, and statistics. About to start an internship doing graph-based data analysis for oil fields.</p>
+  <p class="muted">Casting a wide net while I figure out what I want to spend my career on — and trying to stay employable as the LLMs get better.</p>
 </section>
 
+{% if site.posts.size > 0 %}
 <section>
   <h2>Writing</h2>
-  {% if site.posts.size > 0 %}
   <ul class="post-list">
     {% for post in site.posts limit:5 %}
       <li>
@@ -18,14 +19,12 @@ layout: default
     {% endfor %}
   </ul>
   <a href="{{ '/blog/' | relative_url }}" class="view-all">[ ALL POSTS ]</a>
-  {% else %}
-  <p class="muted">No posts yet.</p>
-  {% endif %}
 </section>
+{% endif %}
 
+{% if site.projects.size > 0 %}
 <section>
   <h2>Projects</h2>
-  {% if site.projects.size > 0 %}
   <ul class="post-list">
     {% for project in site.projects %}
       <li>
@@ -34,7 +33,5 @@ layout: default
       </li>
     {% endfor %}
   </ul>
-  {% else %}
-  <p class="muted">No projects yet.</p>
-  {% endif %}
 </section>
+{% endif %}

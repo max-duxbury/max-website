@@ -3,11 +3,18 @@ layout: default
 title: Projects
 ---
 <h1>Projects</h1>
-<ul>
+{% if site.projects.size > 0 %}
+<ul class="post-list">
   {% for project in site.projects %}
     <li>
-      <a href="{{ project.url | relative_url }}">{{ project.title }}</a>
-      {% if project.description %}<p>{{ project.description }}</p>{% endif %}
+      <div>
+        <a href="{{ project.url | relative_url }}">{{ project.title }}</a>
+        {% if project.description %}<div class="muted">{{ project.description }}</div>{% endif %}
+      </div>
+      {% if project.year %}<time>{{ project.year }}</time>{% endif %}
     </li>
   {% endfor %}
 </ul>
+{% else %}
+<p class="muted">Nothing here yet — projects in progress.</p>
+{% endif %}

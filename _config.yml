@@ -1,14 +1,13 @@
 title: Max Duxbury
-description: Personal website — blog, projects, and CV
-url: "https://maxduxbury.com"  # e.g. https://maxduxbury.com
+description: Maths undergrad exploring ML, distributed systems, and stochastics.
+url: "https://maxduxbury.com"
 baseurl: ""
 
 author:
   name: Max Duxbury
-  email: "max.duxbury@outlook.com"       # e.g. max@example.com
-  github: "max-duxbury"      # e.g. maxduxbury
-  #linkedin: ""    # e.g. maxduxbury
-  #twitter: ""     # e.g. maxduxbury
+  email: "max.duxbury@outlook.com"
+  github: "max-duxbury"
+  linkedin: "max-duxbury"  # TODO: confirm — assumes linkedin.com/in/max-duxbury
 
 # Plugins
 plugins:
