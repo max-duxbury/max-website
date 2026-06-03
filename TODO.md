@@ -1,26 +1,21 @@
 # TODO
 
-## Blockers (site won't look right without these)
+## Content
 
-- [ ] Create `assets/css/main.css` — referenced in the layout but doesn't exist; site is currently unstyled
-
-## Content (required before the site is useful)
-
-- [ ] Fill in real data in `_data/cv.yml` — education, experience, and skills are all placeholders
-- [ ] Set `url` in `_config.yml` (e.g. `https://maxduxbury.com`) once you have a domain
+- [ ] Add more `_projects/` entries as work becomes shareable
 - [ ] Write a first blog post — create `_posts/YYYY-MM-DD-title.md` with front matter (`title`, `date`, optionally `tags`)
-- [ ] Add at least one project — create `_projects/project-name.md` with front matter (`title`, optionally `description`, `github`, `tags`)
-- [ ] Add an intro paragraph to `index.html` (there's a `<!-- intro text here -->` comment placeholder)
-
-## Deployment
-
-- [ ] Choose a host (GitHub Pages is the easiest — free and works natively with Jekyll)
-- [ ] Push the repo and configure the host
-- [ ] Set `url` in `_config.yml` to match the live domain
+- [ ] Add a photo to the about page (drop into `assets/img/` and reference it)
+- [ ] Flesh out `_data/cv.yml` — add the oil-field internship under `experience` once it starts
 
 ## Optional improvements
 
-- [ ] Add an about page
-- [ ] Add tag filtering to the blog index
-- [ ] Add a description field to blog post front matter and show it on the index
-- [ ] Add Open Graph meta tags for social sharing (or verify `jekyll-seo-tag` covers your needs)
+- [ ] Tag filtering on the blog index
+- [ ] Show post descriptions on the blog index (add a `description` front-matter field)
+
+## Done
+
+- [x] Styling (`assets/css/main.css`) + light/dark theme toggle
+- [x] About page, 404 page, favicon, OG image
+- [x] Deploy on Cloudflare Pages (build command: `bundle exec jekyll build`)
+- [x] RSS feed link in the footer
+- [x] Confirmed LinkedIn handle

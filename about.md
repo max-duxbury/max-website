@@ -4,10 +4,6 @@ title: About
 permalink: /about/
 ---
 
-<!-- Add a photo when you have one:
-<img src="/assets/img/me.jpg" alt="Max Duxbury" class="portrait">
--->
-
 I'm a Mathematics undergraduate at Loughborough University. I spend most of
 my time exploring — right now that means machine learning, distributed
 systems, stochastic processes, and statistics — and trying to figure out
