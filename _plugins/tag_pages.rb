@@ -39,7 +39,10 @@ module Jekyll
       end
 
       all = index.keys.sort
-      index.each { |tag, items| site.pages << tag_page(site, tag, items.uniq, all) }
+      index.each do |tag, items|
+        site.pages << tag_page(site, tag, items.uniq, all)
+        site.pages << tag_feed(site, tag, items.uniq)
+      end
       site.pages << index_page(site, index, all)
     end
 
@@ -88,6 +91,14 @@ module Jekyll
         # Otherwise jekyll-sitemap sweeps every one of these into sitemap.xml.
         "sitemap"   => false
       )
+      page
+    end
+
+    # Atom per tag. jekyll-sitemap ignores these on its own: they are not html
+    # and their url does not end in "/".
+    def tag_feed(site, tag, items)
+      page = PageWithoutAFile.new(site, site.source, "tags/#{tag}", "feed.xml")
+      page.data.merge!("layout" => "tag_feed", "tag" => tag, "items" => items)
       page
     end
 

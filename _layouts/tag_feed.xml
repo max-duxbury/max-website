@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>{{ site.title | xml_escape }} — {{ page.tag | xml_escape }}</title>
+  <subtitle>Posts, projects and reading tagged {{ page.tag | xml_escape }}.</subtitle>
+  <link href="{{ page.url | absolute_url }}" rel="self" type="application/atom+xml"/>
+  <link href="{{ '/tags/' | append: page.tag | append: '/' | absolute_url }}" rel="alternate" type="text/html"/>
+  <id>{{ '/tags/' | append: page.tag | append: '/' | absolute_url }}</id>
+  <updated>{{ site.time | date_to_xmlschema }}</updated>
+  <author><name>{{ site.author.name | xml_escape }}</name></author>
+  {%- assign items = page.items | sort: "date" | reverse -%}
+  {%- for i in items %}
+  {%- comment -%}
+    Three shapes here: reading items (have `type`, and an external url that may
+    be absent), projects (have `status`), and posts. Every entry needs a stable
+    unique id, so a url-less reading item falls back to a tag-page fragment.
+  {%- endcomment -%}
+  {%- if i.type -%}
+    {%- if i.url -%}{%- assign link = i.url -%}
+    {%- else -%}
+      {%- comment -%}Slugify the title alone: chaining it after the path would
+      slugify the slashes and the # too.{%- endcomment -%}
+      {%- assign frag = i.title | slugify -%}
+      {%- assign link = '/tags/' | append: page.tag | append: '/#' | append: frag | absolute_url -%}
+    {%- endif -%}
+  {%- else -%}
+    {%- assign link = i.url | absolute_url -%}
+  {%- endif %}
+  <entry>
+    <title>{{ i.title | xml_escape }}</title>
+    <link href="{{ link }}" rel="alternate" type="text/html"/>
+    <id>{{ link }}</id>
+    <updated>{{ i.date | date_to_xmlschema }}</updated>
+    <published>{{ i.date | date_to_xmlschema }}</published>
+    {%- if i.type %}
+    <category term="{{ i.type }}"/>
+    {%- if i.author %}<author><name>{{ i.author | xml_escape }}</name></author>{% endif %}
+    {%- if i.note %}<summary type="html">{{ i.note | markdownify | xml_escape }}</summary>{% endif %}
+    {%- elsif i.status %}
+    <category term="project"/>
+    {%- if i.summary %}<summary>{{ i.summary | xml_escape }}</summary>{% endif %}
+    <content type="html">{{ i.content | xml_escape }}</content>
+    {%- else %}
+    <category term="{{ i.kind | default: 'post' }}"/>
+    <content type="html">{{ i.content | xml_escape }}</content>
+    {%- endif %}
+    {%- for t in i.tags %}
+    <category term="{{ t | xml_escape }}"/>
+    {%- endfor %}
+  </entry>
+  {%- endfor %}
+</feed>

@@ -17,6 +17,25 @@ bundle exec jekyll build    # build to _site/
 bundle install
 ```
 
+## Deployment
+
+Cloudflare Pages must be on **build image v3**. `Gemfile.lock` has a
+`CHECKSUMS` section, which bundler < 2.5 cannot parse — image v2 ships 2.4.10
+and will fail the install. `.ruby-version` (3.4.1) and `.node-version` (22)
+pin the runtimes; Node is required because server-side KaTeX goes through
+ExecJS.
+
+## Maths
+
+`$$...$$` for BOTH inline and display maths — kramdown has no single-dollar
+inline syntax, so `$x$` renders as literal text. Obsidian uses `$...$`, so
+anything pasted from the vault needs converting.
+
+Rendered at build by `kramdown-math-katex`. If the engine ever fails, kramdown
+emits literal `$$...$$` wrapped in `.kdmath` and the build STAYS GREEN — hence
+`show_warnings: true` in `_config.yml` and the loud orange `.kdmath` rule in
+the stylesheet. An orange block on a page means the maths broke.
+
 ## Architecture
 
 Jekyll 4.4.1 static site, deployed on **Cloudflare Pages** (build command

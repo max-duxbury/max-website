@@ -34,6 +34,13 @@ defaults:
     values:
       layout: project
 
+# Maths — rendered server-side at build. show_warnings is load-bearing:
+# without it a missing/broken math engine leaves a GREEN build that renders
+# literal $$...$$ on the page. The .kdmath CSS rule is the visual canary.
+kramdown:
+  math_engine: katex
+  show_warnings: true
+
 # Blog
 permalink: /blog/:year/:month/:day/:title/
 

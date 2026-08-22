@@ -9,7 +9,7 @@ layout: default
       {{ " / " }}{{ page.tag | split: "/" | last }}
     </p>
     <h1>{{ page.tag | split: "/" | last }}</h1>
-    <p class="entry-meta">{{ page.tag }} · {{ page.items | size }} item{% if page.items.size != 1 %}s{% endif %}</p>
+    <p class="entry-meta">{{ page.tag }} · {{ page.items | size }} item{% if page.items.size != 1 %}s{% endif %} · <a href="{{ '/tags/' | append: page.tag | append: '/feed.xml' | relative_url }}">feed</a></p>
     {%- if page.children.size > 0 %}
     <ul class="tags">
       {%- for c in page.children %}

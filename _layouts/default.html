@@ -9,10 +9,19 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
+  {%- comment -%}
+    Only on pages that actually contain maths. `content` is already rendered by
+    the time this outer layout runs, so the KaTeX markup is visible to the test.
+  {%- endcomment -%}
+  {% if content contains 'class="katex' %}<link rel="stylesheet" href="{{ '/assets/katex/katex.css' | relative_url }}">{% endif %}
   <!-- PNG, not SVG: no major platform renders an SVG og:image. -->
   <meta property="og:image" content="{{ '/assets/og-image.png' | absolute_url }}">
   {% seo %}
   {% feed_meta %}
+  {%- if page.tag %}
+  <link rel="alternate" type="application/atom+xml" title="{{ site.title }} — {{ page.tag }}"
+        href="{{ '/tags/' | append: page.tag | append: '/feed.xml' | absolute_url }}">
+  {%- endif %}
 </head>
 <body>
   {% include nav.html %}
