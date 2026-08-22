@@ -42,5 +42,6 @@ exclude:
   - Gemfile
   - Gemfile.lock
   - README.md
+  - TODO.md
   - CLAUDE.md
   - vendor/
