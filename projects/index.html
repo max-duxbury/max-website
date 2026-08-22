@@ -10,6 +10,17 @@ title: Projects
       <div>
         <a href="{{ project.url | relative_url }}">{{ project.title }}</a>
         {% if project.summary %}<div class="muted">{{ project.summary }}</div>{% endif %}
+        {%- assign notes = site.posts | where: "project", project.slug | sort: "date" | reverse -%}
+        {% if notes.size > 0 %}
+        <ul class="project-notes">
+          {% for note in notes limit: 3 %}
+          <li>
+            <a href="{{ note.url | relative_url }}">{{ note.title }}</a>
+            <span class="entry-meta">{{ note.date | date: "%Y-%m-%d" }}</span>
+          </li>
+          {% endfor %}
+        </ul>
+        {% endif %}
       </div>
       <span class="entry-meta">
         <span class="status status-{{ project.status }}">{{ project.status }}</span>

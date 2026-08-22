@@ -180,6 +180,49 @@ article header time {
   white-space: nowrap;
 }
 
+/* ─── Section heads ([ BLOG ], [ PROJECTS ]) ─────────────── */
+.section-head {
+  font-family: "JetBrains Mono", "Fira Mono", ui-monospace, monospace;
+  font-size: 0.8rem;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  margin-top: 2.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.section-head a {
+  color: var(--fg);
+  text-decoration: none;
+  transition: opacity 0.15s;
+}
+
+.section-head a:hover { opacity: 0.6; }
+
+/* ─── Project notes (3 most recent, on the project index) ── */
+.project-notes {
+  list-style: none;
+  padding: 0;
+  margin: 0.4rem 0 0;
+}
+
+.project-notes li {
+  display: flex;
+  gap: 0.5rem;
+  align-items: baseline;
+  font-size: 0.85rem;
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
+.project-notes li::before {
+  content: "·";
+  color: var(--muted);
+}
+
+.project-notes a { text-decoration: none; }
+.project-notes a:hover { opacity: 0.6; }
+
 /* ─── Entry meta (date · kind · reading time) ────────────── */
 .entry-meta {
   font-family: "JetBrains Mono", "Fira Mono", ui-monospace, monospace;
