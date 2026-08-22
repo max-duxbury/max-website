@@ -9,9 +9,12 @@ title: Projects
     <li>
       <div>
         <a href="{{ project.url | relative_url }}">{{ project.title }}</a>
-        {% if project.description %}<div class="muted">{{ project.description }}</div>{% endif %}
+        {% if project.summary %}<div class="muted">{{ project.summary }}</div>{% endif %}
       </div>
-      {% if project.year %}<time>{{ project.year }}</time>{% endif %}
+      <span class="entry-meta">
+        <span class="status status-{{ project.status }}">{{ project.status }}</span>
+        · {{ project.updated | date: "%Y-%m" }}
+      </span>
     </li>
   {% endfor %}
 </ul>

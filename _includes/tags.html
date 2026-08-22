@@ -1,0 +1,7 @@
+{%- comment -%}
+  Display the leaf segment of a hierarchical tag; Phase 2 links the full path.
+{%- endcomment -%}
+{%- assign t = include.tags -%}
+{%- if t.size > 0 -%}
+<ul class="tags">{% for tag in t %}<li>{{ tag | split: "/" | last }}</li>{% endfor %}</ul>
+{%- endif -%}

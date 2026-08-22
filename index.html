@@ -14,7 +14,7 @@ layout: default
     {% for post in site.posts limit:5 %}
       <li>
         <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
-        <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%Y-%m-%d" }}</time>
+        {% include entry-meta.html item=post %}
       </li>
     {% endfor %}
   </ul>
@@ -29,7 +29,7 @@ layout: default
     {% for project in site.projects %}
       <li>
         <a href="{{ project.url | relative_url }}">{{ project.title }}</a>
-        {% if project.year %}<span class="muted">{{ project.year }}</span>{% endif %}
+        <span class="entry-meta"><span class="status status-{{ project.status }}">{{ project.status }}</span></span>
       </li>
     {% endfor %}
   </ul>

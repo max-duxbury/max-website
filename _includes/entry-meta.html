@@ -1,0 +1,9 @@
+{%- comment -%}
+  Renders "2026-04-16 · essay · 3 min" for a post.
+  strip_html is load-bearing: page.content is already-rendered HTML in an index
+  loop, and Rouge's per-token spans inflate the word count badly without it.
+  divided_by: 200.0 forces float division so ceil means something.
+{%- endcomment -%}
+{%- assign i = include.item -%}
+{%- assign mins = i.content | strip_html | number_of_words | divided_by: 200.0 | ceil | at_least: 1 -%}
+<span class="entry-meta"><time datetime="{{ i.date | date_to_xmlschema }}">{{ i.date | date: "%Y-%m-%d" }}</time>{% if i.kind %} · {{ i.kind }}{% endif %} · {{ mins }} min</span>

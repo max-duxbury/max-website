@@ -4,12 +4,33 @@ layout: default
 <article>
   <header>
     <h1>{{ page.title }}</h1>
-    {% if page.github %}<a href="{{ page.github }}">GitHub</a>{% endif %}
-    {% if page.tags.size > 0 %}
-      <ul class="tags">
-        {% for tag in page.tags %}<li>{{ tag }}</li>{% endfor %}
-      </ul>
-    {% endif %}
+    <p class="entry-meta">
+      <span class="status status-{{ page.status }}">{{ page.status }}</span>
+      · started {{ page.started | date: "%Y-%m" }}
+      · updated {{ page.updated | date: "%Y-%m-%d" }}
+      {%- if page.github %} · <a href="{{ page.github }}">source</a>{% endif -%}
+    </p>
+    {% include tags.html tags=page.tags %}
   </header>
+
   {{ content }}
+
+  {%- comment -%}
+    The note stream. Membership is the `project:` key, never tags — a tag is a
+    topic and deliberately cross-cuts projects.
+  {%- endcomment -%}
+  {%- assign notes = site.posts | where: "project", page.slug | sort: "date" | reverse -%}
+  {% if notes.size > 0 %}
+  <section class="note-stream">
+    <h2>Notes</h2>
+    <ul class="post-list">
+      {% for note in notes %}
+      <li>
+        <a href="{{ note.url | relative_url }}">{{ note.title }}</a>
+        {% include entry-meta.html item=note %}
+      </li>
+      {% endfor %}
+    </ul>
+  </section>
+  {% endif %}
 </article>

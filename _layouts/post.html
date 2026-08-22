@@ -3,13 +3,13 @@ layout: default
 ---
 <article>
   <header>
+    {%- if page.project -%}
+      {%- assign proj = site.projects | where: "slug", page.project | first -%}
+      {%- if proj %}<p class="breadcrumb">Part of: <a href="{{ proj.url | relative_url }}">{{ proj.title }}</a></p>{% endif -%}
+    {%- endif %}
     <h1>{{ page.title }}</h1>
-    <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%B %-d, %Y" }}</time>
-    {% if page.tags.size > 0 %}
-      <ul class="tags">
-        {% for tag in page.tags %}<li>{{ tag }}</li>{% endfor %}
-      </ul>
-    {% endif %}
+    {% include entry-meta.html item=page %}
+    {% include tags.html tags=page.tags %}
   </header>
   {{ content }}
 </article>

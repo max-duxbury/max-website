@@ -166,6 +166,8 @@ article header time {
   border-top: 1px solid var(--border);
 }
 
+.post-list .muted { font-size: 0.85rem; }
+
 .post-list a {
   text-decoration: none;
 }
@@ -176,6 +178,34 @@ article header time {
   color: var(--muted);
   font-size: 0.8rem;
   white-space: nowrap;
+}
+
+/* ─── Entry meta (date · kind · reading time) ────────────── */
+.entry-meta {
+  font-family: "JetBrains Mono", "Fira Mono", ui-monospace, monospace;
+  font-size: 0.75rem;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.entry-meta time { font-size: inherit; color: inherit; }
+
+.breadcrumb {
+  font-family: "JetBrains Mono", "Fira Mono", ui-monospace, monospace;
+  font-size: 0.75rem;
+  color: var(--muted);
+  margin-bottom: 0.5rem;
+}
+
+/* Status reads honestly: only `active` gets full-strength text. */
+.status { text-transform: uppercase; letter-spacing: 0.04em; }
+.status-active { color: var(--fg); }
+
+/* ─── Note stream ───────────────────────────────────────── */
+.note-stream {
+  margin-top: 3rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border);
 }
 
 /* ─── Tags ──────────────────────────────────────────────── */

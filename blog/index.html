@@ -3,12 +3,19 @@ layout: default
 title: Blog
 ---
 <h1>Blog</h1>
-<ul>
+{%- comment -%}
+  Every post, including those attached to a project. A note lives at one
+  canonical URL and appears in two indexes; do not filter by `project` here.
+{%- endcomment -%}
+{% if site.posts.size > 0 %}
+<ul class="post-list">
   {% for post in site.posts %}
     <li>
       <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
-      <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%B %-d, %Y" }}</time>
-      {% if post.tags.size > 0 %}— {{ post.tags | join: ", " }}{% endif %}
+      {% include entry-meta.html item=post %}
     </li>
   {% endfor %}
 </ul>
+{% else %}
+<p class="muted">Nothing written yet.</p>
+{% endif %}
