@@ -5,31 +5,35 @@
   padding: 0;
 }
 
-/* ─── Theme Variables (Gruvbox) ─────────────────────────── */
+/* ─── Theme Variables ───────────────────────────────────── */
+/* Dark only. Contrast against --bg: fg 14.1:1, link 6.3:1, muted 5.4:1,
+   link-hover 5.0:1 — all clear WCAG AA. --border and --code-bg are
+   structural, deliberately near-background, and carry no text. */
 :root {
-  /* Gruvbox Light */
-  --bg:      #fbf1c7;
-  --fg:      #3c3836;
-  --muted:   #7c6f64;
-  --border:  #d5c4a1;
-  --code-bg: #f2e5bc;
-  --link:    #076678;
-}
+  --bg:         #1C1C1C;
+  --fg:         #F5E8D8;
+  --muted:      #9A9086;
+  --border:     #302F2D;
+  --code-bg:    #232322;
+  --link:       #FF6F61;
+  --link-hover: #FF4500;
 
-html.dark {
-  /* Gruvbox Dark */
-  --bg:      #282828;
-  --fg:      #ebdbb2;
-  --muted:   #a89984;
-  --border:  #504945;
-  --code-bg: #32302f;
-  --link:    #83a598;
+  /* Syntax highlighting. A deliberate exception to "one accent": these are
+     scoped to code blocks and sit outside the page's link/meta hierarchy.
+     Cool hues, chosen so nothing competes with the coral accent. */
+  --syn-comment:  #928374;
+  --syn-keyword:  #D3869B;
+  --syn-string:   #B8BB26;
+  --syn-number:   #D3869B;
+  --syn-function: #8EC07C;
+  --syn-type:     #FABD2F;
+  --syn-operator: #83A598;
 }
 
 /* ─── Base ──────────────────────────────────────────────── */
 html {
   overflow-y: scroll;
-  font-size: 14px;
+  font-size: 87.5%;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -43,7 +47,6 @@ body {
   padding: 2rem clamp(1rem, 5vw, 3rem);
   max-width: min(760px, 90vw);
   margin: 0 auto;
-  transition: background-color 0.15s ease, color 0.15s ease;
 }
 
 /* ─── Typography ────────────────────────────────────────── */
@@ -73,7 +76,7 @@ a {
   text-underline-offset: 3px;
 }
 
-a:hover { opacity: 0.6; }
+a:hover { color: var(--link-hover); }
 
 /* ─── Navigation ────────────────────────────────────────── */
 nav {
@@ -97,6 +100,7 @@ nav {
 .nav-links li { margin: 0; }
 
 .nav-links a {
+  color: var(--fg);
   font-family: "JetBrains Mono", "Fira Mono", ui-monospace, monospace;
   font-size: 0.8rem;
   letter-spacing: 0.02em;
@@ -107,21 +111,6 @@ nav {
 
 .nav-links a:hover { opacity: 0.65; }
 .nav-links a.active { opacity: 1; }
-
-/* ─── Theme Toggle ──────────────────────────────────────── */
-#theme-toggle {
-  background: none;
-  border: none;
-  cursor: pointer;
-  color: var(--fg);
-  font-family: inherit;
-  font-size: 0.875rem;
-  opacity: 0.4;
-  transition: opacity 0.15s;
-  padding: 0;
-}
-
-#theme-toggle:hover { opacity: 0.65; }
 
 /* ─── Main Content ──────────────────────────────────────── */
 main {
@@ -172,7 +161,7 @@ article header time {
   text-decoration: none;
 }
 
-.post-list a:hover { opacity: 0.6; }
+.post-list a:hover { color: var(--link-hover); }
 
 .post-list time {
   color: var(--muted);
@@ -196,7 +185,7 @@ article header time {
   transition: opacity 0.15s;
 }
 
-.section-head a:hover { opacity: 0.6; }
+.section-head a:hover { color: var(--link-hover); }
 
 /* ─── Project cards ─────────────────────────────────────── */
 /* A block, not a flex row: the card is tall enough that a row layout left the
@@ -228,7 +217,7 @@ article header time {
   text-decoration: none;
 }
 
-.project-card-head a:hover { opacity: 0.6; }
+.project-card-head a:hover { color: var(--link-hover); }
 
 .project-summary {
   color: var(--muted);
@@ -259,7 +248,7 @@ article header time {
 }
 
 .project-notes a { text-decoration: none; }
-.project-notes a:hover { opacity: 0.6; }
+.project-notes a:hover { color: var(--link-hover); }
 
 /* ─── Reading stream ────────────────────────────────────── */
 .reading-filter {
@@ -305,7 +294,7 @@ article header time {
 }
 
 .reading-head a, .reading-title { text-decoration: none; }
-.reading-head a:hover { opacity: 0.6; }
+.reading-head a:hover { color: var(--link-hover); }
 
 .reading-author { font-size: 0.85rem; }
 
@@ -392,7 +381,7 @@ article header time {
 }
 
 .tag-index a { text-decoration: none; }
-.tag-index a:hover { opacity: 0.6; }
+.tag-index a:hover { color: var(--link-hover); }
 
 /* Hierarchy is shown by indent; the leaf is the label, the path is the link. */
 .tag-index .depth-1 { padding-left: 1.25rem; }
@@ -417,6 +406,68 @@ pre {
 pre code {
   background: none;
   padding: 0;
+}
+
+/* ─── Syntax highlighting (Rouge) ───────────────────────── */
+.highlight { background: none; }
+.highlight .c, .highlight .cm, .highlight .c1, .highlight .cs,
+.highlight .cd, .highlight .cp { color: var(--syn-comment); font-style: italic; }
+.highlight .k, .highlight .kc, .highlight .kd, .highlight .kn,
+.highlight .kp, .highlight .kr, .highlight .kv { color: var(--syn-keyword); }
+.highlight .kt, .highlight .nc, .highlight .nn, .highlight .no,
+.highlight .ne, .highlight .nt { color: var(--syn-type); }
+.highlight .s, .highlight .s1, .highlight .s2, .highlight .sb,
+.highlight .sc, .highlight .sd, .highlight .se, .highlight .sh,
+.highlight .si, .highlight .sx, .highlight .sr, .highlight .ss { color: var(--syn-string); }
+.highlight .m, .highlight .mf, .highlight .mh, .highlight .mi,
+.highlight .mo, .highlight .mb, .highlight .mx, .highlight .il { color: var(--syn-number); }
+.highlight .nf, .highlight .nd, .highlight .nb, .highlight .bp { color: var(--syn-function); }
+.highlight .o, .highlight .ow { color: var(--syn-operator); }
+.highlight .na, .highlight .nv, .highlight .vc, .highlight .vg,
+.highlight .vi, .highlight .nl { color: var(--fg); }
+.highlight .p, .highlight .n, .highlight .nx, .highlight .py { color: var(--fg); }
+.highlight .err { color: var(--link); }
+.highlight .gd { color: var(--link-hover); }
+.highlight .gi { color: var(--syn-string); }
+.highlight .gh, .highlight .gu { color: var(--syn-comment); font-weight: 700; }
+
+/* Canary: kramdown emits .kdmath only when the math engine fails to load,
+   in which case the page shows literal $$...$$ and the build stays green. */
+.kdmath {
+  background: var(--link-hover);
+  color: var(--bg);
+  padding: 0 0.2em;
+}
+
+/* ─── Tables ────────────────────────────────────────────── */
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+  /* Benchmark numbers need to line up column-wise. */
+  font-variant-numeric: lining-nums tabular-nums;
+}
+
+th, td {
+  text-align: left;
+  padding: 0.4rem 0.75rem 0.4rem 0;
+  border-bottom: 1px solid var(--border);
+}
+
+th {
+  font-weight: 700;
+  color: var(--muted);
+  font-size: 0.8rem;
+  letter-spacing: 0.02em;
+}
+
+td:not(:first-child), th:not(:first-child) { text-align: right; }
+
+/* ─── Focus ─────────────────────────────────────────────── */
+:focus-visible {
+  outline: 2px solid var(--link);
+  outline-offset: 2px;
 }
 
 /* ─── Blockquote ────────────────────────────────────────── */
@@ -464,20 +515,11 @@ footer {
   color: var(--muted);
 }
 
-.view-all {
-  font-family: "JetBrains Mono", "Fira Mono", ui-monospace, monospace;
-  font-size: 0.75rem;
-  letter-spacing: 0.02em;
-  color: var(--muted);
-  text-decoration: none;
-}
-
 .footer-links a:hover { opacity: 0.6; }
 
 /* ─── Utilities ─────────────────────────────────────────── */
 .muted { color: var(--muted); }
 
-.view-all:hover { opacity: 0.6; }
 
 /* ─── Responsive ────────────────────────────────────────── */
 @media (max-width: 480px) {

@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <rect width="64" height="64" fill="#fbf1c7"/>
+  <rect width="64" height="64" fill="#1C1C1C"/>
   <text x="50%" y="54%" text-anchor="middle" dominant-baseline="middle"
         font-family="ui-monospace, 'JetBrains Mono', monospace"
-        font-size="34" font-weight="700" fill="#3c3836">MD</text>
+        font-size="34" font-weight="700" fill="#F5E8D8">MD</text>
 </svg>

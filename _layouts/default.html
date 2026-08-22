@@ -9,19 +9,10 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
-  <meta property="og:image" content="{{ '/assets/og-image.svg' | absolute_url }}">
+  <!-- PNG, not SVG: no major platform renders an SVG og:image. -->
+  <meta property="og:image" content="{{ '/assets/og-image.png' | absolute_url }}">
   {% seo %}
   {% feed_meta %}
-  <script>
-    // Apply theme before paint to avoid flash
-    (function() {
-      var saved = localStorage.getItem('theme');
-      var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-      if (saved === 'dark' || (!saved && prefersDark)) {
-        document.documentElement.classList.add('dark');
-      }
-    })();
-  </script>
 </head>
 <body>
   {% include nav.html %}
@@ -29,24 +20,5 @@
     {{ content }}
   </main>
   {% include footer.html %}
-  <script>
-    var toggle = document.getElementById('theme-toggle');
-    var sun = document.getElementById('icon-sun');
-    var moon = document.getElementById('icon-moon');
-
-    function updateIcons() {
-      var dark = document.documentElement.classList.contains('dark');
-      sun.style.display  = dark ? 'inline' : 'none';
-      moon.style.display = dark ? 'none'   : 'inline';
-    }
-
-    updateIcons();
-
-    toggle.addEventListener('click', function() {
-      var isDark = document.documentElement.classList.toggle('dark');
-      localStorage.setItem('theme', isDark ? 'dark' : 'light');
-      updateIcons();
-    });
-  </script>
 </body>
 </html>
