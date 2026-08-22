@@ -198,20 +198,58 @@ article header time {
 
 .section-head a:hover { opacity: 0.6; }
 
+/* ─── Project cards ─────────────────────────────────────── */
+/* A block, not a flex row: the card is tall enough that a row layout left the
+   divider looking detached from the content above it. */
+.project-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.project-card {
+  display: block;
+  padding: 1.1rem 0;
+  margin: 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.project-card:first-child { border-top: 1px solid var(--border); }
+
+.project-card-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+}
+
+.project-card-head a {
+  font-size: 1.05rem;
+  text-decoration: none;
+}
+
+.project-card-head a:hover { opacity: 0.6; }
+
+.project-summary {
+  color: var(--muted);
+  font-size: 0.95rem;
+  margin: 0.3rem 0 0;
+}
+
 /* ─── Project notes (3 most recent, on the project index) ── */
 .project-notes {
   list-style: none;
   padding: 0;
-  margin: 0.4rem 0 0;
+  margin: 0.6rem 0 0;
 }
 
 .project-notes li {
   display: flex;
   gap: 0.5rem;
   align-items: baseline;
-  font-size: 0.85rem;
+  font-size: 0.95rem;
   margin: 0;
-  padding: 0;
+  padding: 0.1rem 0;
   border: none;
 }
 
@@ -246,9 +284,6 @@ article header time {
 
 .reading-filter button:hover { opacity: 0.65; }
 .reading-filter button[aria-pressed="true"] { opacity: 1; }
-
-.reading-day { margin-bottom: 2rem; }
-.reading-day .section-head { margin-top: 0; color: var(--muted); }
 
 .reading-list {
   list-style: none;
