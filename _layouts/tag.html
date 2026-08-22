@@ -1,0 +1,48 @@
+---
+layout: default
+---
+<article>
+  <header>
+    <p class="breadcrumb">
+      <a href="{{ '/tags/' | relative_url }}">tags</a>
+      {%- for a in page.ancestors %} / <a href="{{ a | prepend: '/tags/' | append: '/' | relative_url }}">{{ a | split: "/" | last }}</a>{% endfor -%}
+      {{ " / " }}{{ page.tag | split: "/" | last }}
+    </p>
+    <h1>{{ page.tag | split: "/" | last }}</h1>
+    <p class="entry-meta">{{ page.tag }} · {{ page.items | size }} item{% if page.items.size != 1 %}s{% endif %}</p>
+    {%- if page.children.size > 0 %}
+    <ul class="tags">
+      {%- for c in page.children %}
+      <li><a href="{{ c | prepend: '/tags/' | append: '/' | relative_url }}">{{ c | split: "/" | last }}</a></li>
+      {%- endfor %}
+    </ul>
+    {%- endif %}
+  </header>
+
+  {%- comment -%}
+    Mixed content: posts, projects and reading items in one list. The sort is
+    safe across the Time/Date mismatch because Jekyll's `sort` filter shadows
+    Liquid's and falls back to string comparison on nil. Reading items are the
+    only ones with `type`.
+  {%- endcomment -%}
+  {%- assign items = page.items | sort: "date" | reverse %}
+  <ul class="post-list">
+    {%- for i in items %}
+    <li>
+      {%- if i.type %}
+      <div>
+        <a href="{{ i.url }}">{{ i.title }}</a>
+        {%- if i.author %}<div class="muted">{{ i.author }}</div>{% endif %}
+      </div>
+      <span class="entry-meta"><time datetime="{{ i.date | date_to_xmlschema }}">{{ i.date | date: "%Y-%m-%d" }}</time> · {{ i.type }}</span>
+      {%- elsif i.status %}
+      <a href="{{ i.url | relative_url }}">{{ i.title }}</a>
+      <span class="entry-meta"><span class="status status-{{ i.status }}">{{ i.status }}</span> · project</span>
+      {%- else %}
+      <a href="{{ i.url | relative_url }}">{{ i.title }}</a>
+      {% include entry-meta.html item=i %}
+      {%- endif %}
+    </li>
+    {%- endfor %}
+  </ul>
+</article>

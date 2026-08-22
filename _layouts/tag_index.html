@@ -1,0 +1,14 @@
+---
+layout: default
+---
+<article>
+  <header><h1>{{ page.title }}</h1></header>
+  <ul class="tag-index">
+    {%- for t in page.tags %}
+    <li class="depth-{{ t.depth }}">
+      <a href="{{ t.path | prepend: '/tags/' | append: '/' | relative_url }}">{{ t.leaf }}</a>
+      <span class="entry-meta">{{ t.count }}</span>
+    </li>
+    {%- endfor %}
+  </ul>
+</article>

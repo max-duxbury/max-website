@@ -1,0 +1,12 @@
+- type: paper
+  date: 2026-05-10
+  author: "Rijmen, Vincent"
+  title: "The Design of Rijndael"
+  url: https://example.com/rijndael
+  tags: [cs/crypto, mathematics/finite_fields]
+- type: book
+  date: 2026-06-20
+  author: "Lidl & Niederreiter"
+  title: "Introduction to Finite Fields"
+  url: https://example.com/lidl
+  tags: [mathematics/finite_fields]

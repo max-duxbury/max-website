@@ -1,7 +1,8 @@
 {%- comment -%}
-  Display the leaf segment of a hierarchical tag; Phase 2 links the full path.
+  Display the leaf segment, link the full hierarchical path. The tag string is
+  used verbatim as the URL path; _plugins/tag_pages.rb enforces that invariant.
 {%- endcomment -%}
 {%- assign t = include.tags -%}
 {%- if t.size > 0 -%}
-<ul class="tags">{% for tag in t %}<li>{{ tag | split: "/" | last }}</li>{% endfor %}</ul>
+<ul class="tags">{% for tag in t %}<li><a href="{{ tag | downcase | prepend: '/tags/' | append: '/' | relative_url }}">{{ tag | split: "/" | last }}</a></li>{% endfor %}</ul>
 {%- endif -%}

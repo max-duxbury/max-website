@@ -226,6 +226,37 @@ article header time {
   margin: 0;
 }
 
+.tags a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.tags li:hover { border-color: var(--muted); }
+
+/* ─── Tag index ─────────────────────────────────────────── */
+.tag-index {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.tag-index li {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+  padding: 0.25rem 0;
+  margin: 0;
+}
+
+.tag-index a { text-decoration: none; }
+.tag-index a:hover { opacity: 0.6; }
+
+/* Hierarchy is shown by indent; the leaf is the label, the path is the link. */
+.tag-index .depth-1 { padding-left: 1.25rem; }
+.tag-index .depth-2 { padding-left: 2.5rem; }
+.tag-index .depth-3 { padding-left: 3.75rem; }
+
 /* ─── Code ──────────────────────────────────────────────── */
 code {
   font-family: "JetBrains Mono", "Fira Mono", ui-monospace, monospace;
