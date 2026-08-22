@@ -1,7 +1,7 @@
 <nav>
   <ul class="nav-links">
     <li><a href="{{ '/' | relative_url }}"{% if page.url == '/' %} class="active"{% endif %}>[ HOME ]</a></li>
-    <li><a href="{{ '/about/' | relative_url }}"{% if page.url contains '/about' %} class="active"{% endif %}>[ ABOUT ]</a></li>
+    <li><a href="{{ '/now/' | relative_url }}"{% if page.url contains '/now' %} class="active"{% endif %}>[ NOW ]</a></li>
     <li><a href="{{ '/blog/' | relative_url }}"{% if page.url contains '/blog' %} class="active"{% endif %}>[ BLOG ]</a></li>
     <li><a href="{{ '/projects/' | relative_url }}"{% if page.url contains '/projects' %} class="active"{% endif %}>[ PROJECTS ]</a></li>
     <li><a href="{{ '/reading/' | relative_url }}"{% if page.url contains '/reading' %} class="active"{% endif %}>[ READING ]</a></li>
