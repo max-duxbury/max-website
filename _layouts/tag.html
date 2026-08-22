@@ -37,7 +37,7 @@ layout: default
       <span class="entry-meta"><time datetime="{{ i.date | date_to_xmlschema }}">{{ i.date | date: "%Y-%m-%d" }}</time> · {{ i.type }}</span>
       {%- elsif i.status %}
       <a href="{{ i.url | relative_url }}">{{ i.title }}</a>
-      <span class="entry-meta"><span class="status status-{{ i.status }}">{{ i.status }}</span> · project</span>
+      <span class="entry-meta"><time datetime="{{ i.date | date_to_xmlschema }}">{{ i.date | date: "%Y-%m-%d" }}</time> · project · <span class="status status-{{ i.status }}">{{ i.status }}</span></span>
       {%- else %}
       <a href="{{ i.url | relative_url }}">{{ i.title }}</a>
       {% include entry-meta.html item=i %}

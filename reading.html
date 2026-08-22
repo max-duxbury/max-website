@@ -1,0 +1,66 @@
+---
+layout: default
+title: Reading
+permalink: /reading/
+---
+<h1>Reading</h1>
+<p class="muted">Papers, books, links, video. Technical and otherwise, in one stream — the mixture is the point.</p>
+
+<div class="reading-filter" role="group" aria-label="Filter by type">
+  <button type="button" data-filter="all" aria-pressed="true">[ ALL ]</button>
+  <button type="button" data-filter="paper" aria-pressed="false">[ PAPERS ]</button>
+  <button type="button" data-filter="book" aria-pressed="false">[ BOOKS ]</button>
+  <button type="button" data-filter="bookmark" aria-pressed="false">[ LINKS ]</button>
+  <button type="button" data-filter="video" aria-pressed="false">[ VIDEO ]</button>
+</div>
+
+{%- comment -%}
+  Sorted first, then grouped: Ruby's group_by preserves first-encounter key
+  order, so the groups come out reverse-chronological without re-sorting them.
+{%- endcomment -%}
+{%- assign groups = site.data.reading | sort: "date" | reverse | group_by_exp: "i", "i.date | date: '%Y-%m-%d'" %}
+{% for g in groups %}
+<section class="reading-day">
+  <h2 class="section-head">{{ g.name }}</h2>
+  <ul class="reading-list">
+    {%- for i in g.items %}
+    <li data-type="{{ i.type }}">
+      <div class="reading-head">
+        {% if i.url %}<a href="{{ i.url }}">{{ i.title }}</a>{% else %}<span class="reading-title">{{ i.title }}</span>{% endif %}
+        <span class="entry-meta">{{ i.type }}</span>
+      </div>
+      {%- if i.author %}<div class="muted reading-author">{{ i.author }}</div>{% endif %}
+      {%- if i.note %}<div class="reading-note">{{ i.note | markdownify }}</div>{% endif %}
+      {%- include tags.html tags=i.tags %}
+    </li>
+    {%- endfor %}
+  </ul>
+</section>
+{% endfor %}
+
+<script>
+  // Progressive enhancement: the page renders complete and unfiltered without
+  // this. Hiding every entry in a day also hides that day's heading.
+  (function () {
+    var bar = document.querySelector('.reading-filter');
+    if (!bar) return;
+    var items = document.querySelectorAll('.reading-list li');
+    var days  = document.querySelectorAll('.reading-day');
+
+    bar.addEventListener('click', function (e) {
+      var btn = e.target.closest('button[data-filter]');
+      if (!btn) return;
+      var want = btn.getAttribute('data-filter');
+
+      bar.querySelectorAll('button[data-filter]').forEach(function (b) {
+        b.setAttribute('aria-pressed', String(b === btn));
+      });
+      items.forEach(function (li) {
+        li.hidden = !(want === 'all' || li.getAttribute('data-type') === want);
+      });
+      days.forEach(function (d) {
+        d.hidden = !d.querySelector('.reading-list li:not([hidden])');
+      });
+    });
+  })();
+</script>
