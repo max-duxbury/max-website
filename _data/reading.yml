@@ -1,7 +1,5 @@
 # Reading stream. Reverse-chronological, one entry per item.
 #
-# FIXTURE DATA — plausible placeholders, not an actual record. Replace.
-#
 # type:   paper | book | bookmark | video
 # date:   when I engaged with it, NOT publication date and not file ctime.
 #         The stream is an activity stream; this is the field it sorts on.
@@ -11,67 +9,12 @@
 #         or later. Quote every title and author — a colon in a title
 #         ("Ficciones: ...") silently breaks a bare scalar.
 
-- type: book
-  date: 2026-08-14
-  author: "Hatcher, Allen"
-  title: "Algebraic Topology"
-  url: https://pi.math.cornell.edu/~hatcher/AT/ATpage.html
-  tags: [mathematics/algebraic_topology]
-  note: |
-    Chapter 0 is doing a lot of work that nobody warned me about. The homotopy
-    extension property shows up everywhere later and I skimmed it.
-
-- type: book
-  date: 2026-08-14
-  author: "Borges, Jorge Luis"
-  title: "Ficciones"
-  tags: [literature]
-
-- type: paper
-  date: 2026-07-28
-  author: "Lamport, Leslie"
-  title: "Time, Clocks, and the Ordering of Events in a Distributed System"
-  url: https://lamport.azurewebsites.net/pubs/time-clocks.pdf
-  tags: [cs/systems/distributed]
-  note: |
-    The happens-before relation is a partial order, and most of the confusion
-    I had about Raft came from quietly assuming it was total.
-
-- type: paper
-  date: 2026-07-28
-  author: "Ongaro, Diego and Ousterhout, John"
-  title: "In Search of an Understandable Consensus Algorithm"
-  url: https://raft.github.io/raft.pdf
-  tags: [cs/systems/distributed]
-
-- type: video
-  date: 2026-07-11
-  author: "3Blue1Brown"
-  title: "But what is a Fourier series?"
-  url: https://www.youtube.com/watch?v=r6sGWTCMz2k
-  tags: [mathematics]
-
 - type: bookmark
   date: 2026-06-30
   author: "Gundersen, Gregory"
   title: "Why I keep a research blog"
   url: https://gregorygundersen.com/blog/2020/01/12/why-research-blog/
   tags: [writing]
-  note: |
-    The argument that writing is the thinking, not a report on it. Reason this
-    site has a note stream at all.
-
-- type: book
-  date: 2026-06-20
-  author: "Lidl, Rudolf and Niederreiter, Harald"
-  title: "Introduction to Finite Fields and Their Applications"
-  tags: [mathematics/finite_fields]
-
-- type: book
-  date: 2026-06-02
-  author: "Calvino, Italo"
-  title: "Invisible Cities"
-  tags: [literature]
 
 - type: paper
   date: 2026-05-10
@@ -80,5 +23,4 @@
   url: https://link.springer.com/book/10.1007/978-3-662-04722-4
   tags: [cs/crypto, mathematics/finite_fields]
   note: |
-    The S-box is not magic: inversion in GF(2^8) then an affine map, chosen so
-    the algebraic degree stays high.
+    What I have been implementing.
