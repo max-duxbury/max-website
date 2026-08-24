@@ -31,6 +31,17 @@ ExecJS.
 inline syntax, so `$x$` renders as literal text. Obsidian uses `$...$`, so
 anything pasted from the vault needs converting.
 
+Theorem environments are plain CSS classes applied with a kramdown block IAL —
+no plugin, no JS:
+
+```markdown
+> **Theorem 1.** Every finite field has prime-power order.
+{: .theorem}
+```
+
+`.theorem`, `.definition`, `.lemma`, `.proposition`, `.corollary`, `.proof`.
+A `.proof` closes with an automatic tombstone.
+
 Rendered at build by `kramdown-math-katex`. If the engine ever fails, kramdown
 emits literal `$$...$$` wrapped in `.kdmath` and the build STAYS GREEN — hence
 `show_warnings: true` in `_config.yml` and the loud orange `.kdmath` rule in

@@ -50,14 +50,19 @@ body {
 }
 
 /* ─── Typography ────────────────────────────────────────── */
+/* Sizes are em, not rem: body scales with a clamp(), so rem headings ended up
+   SMALLER than the paragraph beneath them on any viewport past ~875px. em is
+   relative to the scaled body, so the ordering holds at every width. */
 h1, h2, h3, h4 {
   font-weight: 700;
   line-height: 1.3;
+  text-wrap: balance;
 }
 
-h1 { font-size: 1.15rem; margin-bottom: 1rem; }
-h2 { font-size: 1rem; margin-top: 2.5rem; margin-bottom: 0.75rem; }
-h3 { font-size: 0.875rem; margin-top: 1.5rem; margin-bottom: 0.5rem; }
+h1 { font-size: 1.5em; margin-bottom: 1rem; }
+h2 { font-size: 1.25em; margin-top: 2.5rem; margin-bottom: 0.75rem; }
+h3 { font-size: 1.05em; margin-top: 1.5rem; margin-bottom: 0.5rem; }
+h4 { font-size: 1em; margin-top: 1.25rem; margin-bottom: 0.5rem; }
 
 p { margin-bottom: 1rem; }
 p:last-child { margin-bottom: 0; }
@@ -68,6 +73,11 @@ ul, ol {
 }
 
 li { margin-bottom: 0.25rem; }
+
+img {
+  max-width: 100%;
+  height: auto;
+}
 
 /* ─── Links ─────────────────────────────────────────────── */
 a {
@@ -91,7 +101,7 @@ nav {
 .nav-links {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.25rem;
+  gap: 0.25rem 0.5rem;
   list-style: none;
   padding: 0;
   margin: 0;
@@ -100,6 +110,8 @@ nav {
 .nav-links li { margin: 0; }
 
 .nav-links a {
+  display: inline-block;
+  padding: 0.25rem 0.15rem;
   color: var(--fg);
   font-family: "JetBrains Mono", "Fira Mono", ui-monospace, monospace;
   font-size: 0.8rem;
@@ -431,6 +443,17 @@ pre code {
 .highlight .gi { color: var(--syn-string); }
 .highlight .gh, .highlight .gu { color: var(--syn-comment); font-weight: 700; }
 
+/* ─── Display maths ─────────────────────────────────────── */
+/* katex.css sets `white-space: nowrap` on the inner .katex and never sets
+   overflow, so one wide equation scrolls the whole PAGE sideways. Scroll it
+   inside its own box instead. Not a conflict with katex.css loading later:
+   that file only sets display/margin/text-align on this selector. */
+.katex-display {
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding-block: 0.25rem;
+}
+
 /* Canary: kramdown emits .kdmath only when the math engine fails to load,
    in which case the page shows literal $$...$$ and the build stays green. */
 .kdmath {
@@ -464,10 +487,70 @@ th {
 
 td:not(:first-child), th:not(:first-child) { text-align: right; }
 
+/* ─── Figures ───────────────────────────────────────────── */
+figure {
+  margin: 1.5rem 0;
+}
+
+figure img { display: block; }
+
+figcaption {
+  color: var(--muted);
+  font-size: 0.85rem;
+  margin-top: 0.5rem;
+}
+
+/* ─── Footnotes ─────────────────────────────────────────── */
+/* kramdown emits div.footnotes (with its own <hr>), sup > a.footnote refs, and
+   .reversefootnote backlinks. scroll-margin keeps a jumped-to note off the
+   very top edge of the viewport. */
+.footnotes {
+  font-size: 0.85em;
+  color: var(--muted);
+  margin-top: 3rem;
+}
+
+.footnotes li { scroll-margin-top: 2rem; }
+.footnotes p { margin-bottom: 0.5rem; }
+
+sup a.footnote {
+  text-decoration: none;
+  padding: 0 0.15em;
+  scroll-margin-top: 2rem;
+}
+
+a.reversefootnote {
+  text-decoration: none;
+  margin-left: 0.35em;
+}
+
 /* ─── Focus ─────────────────────────────────────────────── */
 :focus-visible {
   outline: 2px solid var(--link);
   outline-offset: 2px;
+}
+
+/* Parked off-screen until tabbed to — the first stop for a keyboard user. */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: "JetBrains Mono", "Fira Mono", ui-monospace, monospace;
+  font-size: 0.8rem;
+  padding: 0.5rem 0.75rem;
+  text-decoration: none;
+  z-index: 10;
+}
+
+.skip-link:focus {
+  left: 0;
+}
+
+::selection {
+  background: var(--link);
+  color: var(--bg);
 }
 
 /* ─── Blockquote ────────────────────────────────────────── */
@@ -476,6 +559,25 @@ blockquote {
   padding-left: 1rem;
   color: var(--muted);
   margin: 1.5rem 0;
+}
+
+/* ─── Theorem environments ──────────────────────────────── */
+/* Applied with a kramdown block IAL, so no plugin and no JS:
+     > **Theorem 1.** Every finite field has prime-power order.
+     {: .theorem}
+   The blockquote rule above mutes its text; these restore full strength,
+   since a theorem statement is the opposite of an aside. */
+.theorem, .definition, .lemma, .proposition, .corollary {
+  border-left: 2px solid var(--link);
+  color: var(--fg);
+}
+
+.definition, .lemma, .proposition, .corollary { border-left-color: var(--muted); }
+
+/* A proof reads as commentary on the statement, so it keeps the muted
+   blockquote treatment — and closes with a tombstone. */
+.proof > p:last-child::after {
+  content: " \220E";
 }
 
 /* ─── HR ─────────────────────────────────────────────────── */
@@ -524,5 +626,8 @@ footer {
 /* ─── Responsive ────────────────────────────────────────── */
 @media (max-width: 480px) {
   nav { flex-wrap: wrap; gap: 0.75rem; }
+  /* Seven links at 0.8rem is a tight target grid on a phone. */
+  .nav-links { gap: 0.4rem 0.7rem; }
+  .nav-links a { padding: 0.35rem 0.2rem; }
   footer { flex-direction: column; align-items: flex-start; }
 }
